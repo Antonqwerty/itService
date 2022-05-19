@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача №1</title>
+</head>
+<body>
+<h2>Введите значения массивов</h2>
+<form method="POST" th:object="${input}" th:action="@{/task/1}">
+    <input type="text" id="firstArray" placeholder="Значения первого массива" th:field="*{firstArray}"><br>
+    <br>
+    <input type="text" id="secondArray" placeholder="Значения второго массива" th:field="*{secondArray}"><br>
+    <br>
+    <div class="btn-group">
+        <button>Посчитать</button>
+        <button>Экспортировать</button>
+        <button>Загрузить</button>
+        <button>Импортировать</button>
+    </div>
+    <br>
+</form>
+<form method="PUT" th:object="${input}" th:action="@{/task/1}">
+    <button>Сохранить</button>
+</form>
+<div th:if="${result!=null}">
+    Результат: <span th:text="${result}"> </span>
+</div>
+<br>
+<br>
+
+
+</body>
+</html>
