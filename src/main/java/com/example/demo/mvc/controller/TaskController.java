@@ -1,6 +1,5 @@
 package com.example.demo.mvc.controller;
 
-import com.example.demo.mvc.domain.Task1;
 import com.example.demo.mvc.dto.TaskInput;
 import com.example.demo.mvc.service.Task1Service;
 import com.example.demo.mvc.service.TaskService;
@@ -19,6 +18,7 @@ public class TaskController {
     private final Map<String, TaskService> taskServiceMap;
     private final Task1Service task1Service;
 
+
     @GetMapping
     public String getForm() {
         return "main";
@@ -30,7 +30,7 @@ public class TaskController {
         return "task" + task;
     }
 
-    @PostMapping(value = "/{task}", consumes = "application/x-www-form-urlencoded;charset=UTF-8")
+    @PostMapping(value = "/{task}", consumes = "application/x-www-form-urlencoded;charset=UTF-8", params = "action=calc")
     public String calcTask(Model model, TaskInput input, @PathVariable String task) {
         model.addAttribute("input", input);
         System.out.println(task);
@@ -40,8 +40,10 @@ public class TaskController {
         return "task1";
     }
 
-    @PutMapping
-    public Task1 saveData(TaskInput taskInput) {
-       return task1Service.saveTask(taskInput);
+    @PostMapping(value = "/{task}", consumes = "application/x-www-form-urlencoded;charset=UTF-8", params = "action=save")
+    public String saveToDb(Model model, TaskInput input, @PathVariable String task) {
+        model.addAttribute("input", input);
+        task1Service.saveTask(input);
+        return "task1";
     }
 }

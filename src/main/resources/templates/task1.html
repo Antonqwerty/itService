@@ -13,15 +13,13 @@
     <input type="text" id="secondArray" placeholder="Значения второго массива" th:field="*{secondArray}"><br>
     <br>
     <div class="btn-group">
-        <button>Посчитать</button>
-        <button>Экспортировать</button>
-        <button>Загрузить</button>
-        <button>Импортировать</button>
+        <button name="action" value="calc">Посчитать</button>
+        <button name="action" value="save">Сохранить</button>
+        <button name="action" value="export">Экспортировать</button>
+        <button name="action" value="upload">Загрузить</button>
+        <button name="action" value="import">Импортировать</button>
     </div>
     <br>
-</form>
-<form method="PUT" th:object="${input}" th:action="@{/task/1}">
-    <button>Сохранить</button>
 </form>
 <div th:if="${result!=null}">
     Результат: <span th:text="${result}"> </span>
